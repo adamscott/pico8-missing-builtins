@@ -15,7 +15,7 @@ You miss built-in lua functions such as `ipairs` or `getmetatable` in [pico-8](h
 Travis-CI is set to test `missing.lua` against `test.lua`, which compares results of this library functions with the built-in ones. Well, tests may be incomplete, so do not hesitate to [flag a bug to the issue tracker](https://github.com/adamscott/pico8-missing-builtins/issues) if something goes wrong.
 
 ## How to use
-Heads up to the [lastest release.](https://github.com/adamscott/pico8-missing-builtins/releases/latest) Then, there's two options:
+Heads up to the [latest release.](https://github.com/adamscott/pico8-missing-builtins/releases/latest) Then, there's two options:
 * Either you download `missing.lua` then copy the file contents into your `.p8` project file, preferably before the rest of your code; or
 * you load `missing.p8` in pico-8 to test it out first.
 
