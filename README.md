@@ -2,7 +2,7 @@
 [![travis-ci](https://travis-ci.org/adamscott/pico8-missing-builtins.svg?branch=master)](https://travis-ci.org/adamscott/pico8-missing-builtins)
 [![codecov](https://codecov.io/gh/adamscott/pico8-missing-toolbelt/branch/master/graph/badge.svg)](https://codecov.io/gh/adamscott/pico8-missing-toolbelt)
 
-You miss built-in lua functions such as `ipairs` or `getmetatable` in pico8? Well, fear no more.
+You miss built-in lua functions such as `ipairs` or `getmetatable` in [pico-8](http://www.lexaloffle.com/pico-8.php)? Well, fear no more.
 
 ## Currently supported Lua "built-in" functions
 - `getmetatable`
