@@ -20,7 +20,7 @@ Heads up to the [lastest release.](https://github.com/adamscott/pico8-missing-bu
 * you load `toolbelt.p8` in pico-8 to test it out first.
 
 ### About this license
-This library is under creative commons license [CC4-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE.md](LICENSE.md). It's the same license as the optional one on Lexaloffle's website.
+This library is under creative commons license [CC4-BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/). See [LICENSE.md](LICENSE.md). It's the same license as the optional one on Lexaloffle's website if you choose to publish a cart.
 
 So, if you happen to publish a cart using this library, it would be nice if you mention it.
 
