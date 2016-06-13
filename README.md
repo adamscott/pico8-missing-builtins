@@ -1,4 +1,4 @@
-# pico8-missing-toolbelt
+# pico8-missing-builtins
 [![travis-ci](https://travis-ci.org/adamscott/pico8-missing-builtins.svg?branch=master)](https://travis-ci.org/adamscott/pico8-missing-builtins)
 [![codecov](https://codecov.io/gh/adamscott/pico8-missing-toolbelt/branch/master/graph/badge.svg)](https://codecov.io/gh/adamscott/pico8-missing-toolbelt)
 
