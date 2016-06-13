@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 7
 __lua__
 
-#insert_toolbelt#
+#insert_missing#
 
 -- ============================
 -- ============================

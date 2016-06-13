@@ -3,9 +3,9 @@
 import shutil
 import re
 
-with open('package_toolbelt.lua', 'w') as w:
+with open('package_missing.lua', 'w') as w:
     matches = []
-    with open('toolbelt.lua', 'r') as r:
+    with open('missing.lua', 'r') as r:
         for line in r:
             match = re.match(r'function (\w+) \(', line)
             if match is not None:

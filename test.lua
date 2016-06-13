@@ -1,14 +1,14 @@
-toolbelt = require('package_toolbelt')
+missing = require('package_missing')
 
-describe("toolbelt -setmetatable-", function()
+describe("missing -setmetatable-", function()
   it("should set a metatable", function()
-    local Test_toolbelt = {}
-    Test_toolbelt.__index = Test_toolbelt
-    function Test_toolbelt:_init (name)
+    local Test_missing = {}
+    Test_missing.__index = Test_missing
+    function Test_missing:_init (name)
       self.name = name
     end
     local Test_native = {}
-    Test_native.__index = Test_toolbelt
+    Test_native.__index = Test_missing
     function Test_native:_init (name)
       self.name = name
     end
@@ -21,17 +21,17 @@ describe("toolbelt -setmetatable-", function()
     }
 
     setmetatable(Test_native, mt)
-    toolbelt.setmetatable(Test_toolbelt, mt)
+    missing.setmetatable(Test_missing, mt)
     assert.are.equals(
       getmetatable(Test_native),
-      getmetatable(Test_toolbelt)
+      getmetatable(Test_missing)
     )
     assert.truthy(Test_native("native"))
-    assert.truthy(Test_toolbelt("toolbelt"))
+    assert.truthy(Test_missing("missing"))
   end)
 end)
 
-describe("toolbelt -getmetatable-", function()
+describe("missing -getmetatable-", function()
   it("should get a metatable", function()
     local Test = {}
     Test.__index = Test
@@ -41,15 +41,15 @@ describe("toolbelt -getmetatable-", function()
         return self
       end
     }
-    toolbelt.setmetatable(Test, mt)
+    missing.setmetatable(Test, mt)
     assert.are.equals(
       getmetatable(Test),
-      toolbelt.getmetatable(Test)
+      missing.getmetatable(Test)
     )
   end)
 end)
 
-describe("toolbelt -rawget-", function()
+describe("missing -rawget-", function()
   it("should get raw value", function ()
     local setValue = 125
     local Test = {
@@ -61,7 +61,7 @@ describe("toolbelt -rawget-", function()
         return defaultValue
       end
     }
-    toolbelt.setmetatable(Test, mt)
+    missing.setmetatable(Test, mt)
     assert.are.equals(
       Test.doNotExist,
       defaultValue
@@ -72,21 +72,21 @@ describe("toolbelt -rawget-", function()
     )
     assert.are.equals(
       rawget(Test, 'doNotExist'),
-      toolbelt.rawget(Test, 'doNotExist')
+      missing.rawget(Test, 'doNotExist')
     )
     assert.are.equals(
-      toolbelt.rawget(Test, 'value'),
+      missing.rawget(Test, 'value'),
       setValue
     )
   end)
 end)
 
-describe("toolbelt -unpack-", function()
+describe("missing -unpack-", function()
   it("should unpack table", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = 0
     local unpack_j = 0
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -102,7 +102,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = 3
     local unpack_j = 0
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -118,7 +118,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = -2
     local unpack_j = 0
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -134,7 +134,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = 8
     local unpack_j = 0
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -150,7 +150,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = 3
     local unpack_j = 5
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i, unpack_j)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i, unpack_j)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i, unpack_j)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -166,7 +166,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = -1
     local unpack_j = 3
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i, unpack_j)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i, unpack_j)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i, unpack_j)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -182,7 +182,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = 10
     local unpack_j = 4
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i, unpack_j)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i, unpack_j)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i, unpack_j)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -198,7 +198,7 @@ describe("toolbelt -unpack-", function()
     local unpack_table = {1,2,3,4,5}
     local unpack_i = -1
     local unpack_j = -6
-    local a, b, c, d, e, f, g, h = toolbelt.unpack(unpack_table, unpack_i, unpack_j)
+    local a, b, c, d, e, f, g, h = missing.unpack(unpack_table, unpack_i, unpack_j)
     local _a, _b, _c, _d, _e, _f, _g, _h = unpack(unpack_table, unpack_i, unpack_j)
     assert.are.equals(a, _a)
     assert.are.equals(b, _b)
@@ -211,13 +211,13 @@ describe("toolbelt -unpack-", function()
   end)
 end)
 
-describe("toolbelt -ipairs-", function()
+describe("missing -ipairs-", function()
   it("should iterate a table with i,v as for values", function()
     local test_table = {2,4,8,16,32,64,128,256,512,1024}
     for i,v in ipairs(test_table) do
       assert.are.equals(2^i, v)
     end
-    for i,v in toolbelt.ipairs(test_table) do
+    for i,v in missing.ipairs(test_table) do
       assert.are.equals(2^i, v)
     end
   end)
