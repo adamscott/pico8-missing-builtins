@@ -1,0 +1,30 @@
+language: c
+sudo: false
+env:
+  global:
+    - LUAROCKS=2.2.2
+  matrix:
+    - LUA=lua5.1
+addons:
+  apt:
+    packages:
+      - python3.5
+before_install:
+  - source .travis/setenv_lua.sh
+  - luarocks install luacov
+  - luarocks install busted
+script:
+  - python generate_package.py
+  - busted -c test.lua -o TAP
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+before_deploy:
+  - python generate_pico8.py
+deploy:
+  provider: releases
+  api_key:
+    secure: RyAo2tKLINNUOWCxW+0s5JvyIMM3KIJqDBNDWJtrJcrJCzdNNeZQsEAM7pDq8HXUogPgYbambclbQeQK7tEvqZ1KvQ5rlWaL67A6LaAX+npEcFP38HTlnkFAX57es3lcAlA96+0WJgqrpD7tv2Us2v6f7mTQmrtzha+zLcc5vM5bc6dZu/lRryZuJi+Ih+meANnIesqx3KKvz4j4y4oR+dwPi45eIVEVOoj4Cz6jyIhfYD0KlbnoZ/avWoZPZSyeUJFx0CuuVCkKzpYagjM/nuumhLwJM6aO2UNOI0XVocMgzqx7rlmORETw4VJYDwJYwi/UlDsShXg0dMdecMfXLKsQpjjymDenSDN9EenbQnlVpre9s6/jklb8m+bW5IE6rw/IGx8NT8HC+UhTVlxr/XOdAdYf/TGoyBSOeLXWNs2rYrnLwM/AJtbOyhE7ixnrbpTRJp4VAk9CbYLLVGe4JjqmR372VxXpwtemiuaXNtNbcOZMoMtJpDlFKZQj9KBc49BgO21m3m0fYHkN4sQf3V65o08j9zVqUYxCZ+kLGRzaaAE+JtAoCn8bBROyaqh4sw7Xpj21g1ZOiyAlGRxhwR2STPMODBFovF+71tqNsdEIQA+w89GP+1DzMqVfZ/VGEoqgH3WcjC3O5Yy9pyvgf+SMpDz4e8UFDTdW02QHfdY=
+  file: toolbelt.p8
+  skip_cleanup: true
+  on:
+    tags: true
