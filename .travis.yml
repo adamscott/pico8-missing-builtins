@@ -2,24 +2,24 @@ language: c
 sudo: false
 env:
   global:
-    - LUAROCKS=2.2.2
+  - LUAROCKS=2.2.2
   matrix:
-    - LUA=lua5.1
+  - LUA=lua5.1
 addons:
   apt:
     packages:
-      - python3.5
+    - python3
 before_install:
-  - source .travis/setenv_lua.sh
-  - luarocks install luacov
-  - luarocks install busted
+- source .travis/setenv_lua.sh
+- luarocks install luacov
+- luarocks install busted
 script:
-  - python generate_package.py
-  - busted -c test.lua -o TAP
+- python generate_package.py
+- busted -c test.lua -o TAP
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
 before_deploy:
-  - python generate_pico8.py
+- python generate_pico8.py
 deploy:
   provider: releases
   api_key:
