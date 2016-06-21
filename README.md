@@ -11,7 +11,7 @@ You miss built-in lua functions such as `ipairs` or `getmetatable` in [pico-8](h
 - `unpack`
 - `ipairs`
 - `table.pack`
-- `table.unpack` (as an alias to `unpack`)
+- `table.unpack` as an alias to `unpack`
 - `table.insert`
 - `table.remove`
 - `table.sort`
@@ -31,3 +31,20 @@ So, if you happen to publish a cart using this library, it would be nice if you 
 
 ## Thanks
 To Lexaloffle, which this library would not exist without pico-8.
+
+## Changes
+### 0.2
+- Add some `table` functions.
+  - `table.pack`
+  - `table.unpack` as an alias to `unpack`
+  - `table.insert`
+  - `table.remove`
+  - `table.sort`
+- Refactor `ipairs` to make it return an `iter` function, as the native one does.
+### 0.1
+- Add
+  - `getmetatable`
+  - `setmetatable`
+  - `rawget`
+  - `unpack`
+  - `ipairs`
