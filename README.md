@@ -10,6 +10,11 @@ You miss built-in lua functions such as `ipairs` or `getmetatable` in [pico-8](h
 - `rawget`
 - `unpack`
 - `ipairs`
+- `table.pack`
+- `table.unpack` (as an alias to `unpack`)
+- `table.insert`
+- `table.remove`
+- `table.sort`
 
 ### Tested to imitate their counterparts
 Travis-CI is set to test `missing.lua` against `test.lua`, which compares results of this library functions with the built-in ones. Well, tests may be incomplete, so do not hesitate to [flag a bug to the issue tracker](https://github.com/adamscott/pico8-missing-builtins/issues) if something goes wrong.
