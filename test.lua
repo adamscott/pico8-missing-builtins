@@ -221,4 +221,107 @@ describe("missing -ipairs-", function()
       assert.are.equals(2^i, v)
     end
   end)
+
+  it("should return a iter function", function()
+    local test_table = {2,4,8,16,32,64,128,256,512,1024}
+    iter, i, v = missing.ipairs(test_table)
+    assert.are.equals(type(iter), 'function')
+  end)
+end)
+
+describe("missing -table.pack-", function()
+  it("should pack", function()
+    local test_table_native = table.pack(-1,0,1,2,3,4,5)
+    local test_table_missing = missing.table.pack(-1,0,1,2,3,4,5)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
+end)
+
+describe("missing -table.insert-", function()
+  it("should insert a value in a simple table", function()
+    local function generate_table()
+      return {22,-20,67,1009,-500}
+    end
+    local test_table_native = generate_table()
+    local test_table_missing = generate_table()
+    table.insert(test_table_native, 10)
+    missing.table.insert(test_table_missing, 10)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
+
+  it("should insert a value at specified pos in a table", function()
+    local function generate_table()
+      return {-3,-2,-1,0,2,3}
+    end
+    local test_table_native = generate_table()
+    local test_table_missing = generate_table()
+    table.insert(test_table_native, 5, 1)
+    missing.table.insert(test_table_missing, 5, 1)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
+end)
+
+describe("missing -table.remove-", function()
+  it("should remove an element from a given table", function()
+    local function generate_table()
+      return {-3,-2,-1,0,1,2,3}
+    end
+    local test_table_native = generate_table()
+    local test_table_missing = generate_table()
+    table.remove(test_table_native)
+    missing.table.remove(test_table_missing)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
+
+  it("should remove an specified element from a given table", function()
+    local function generate_table()
+      return {-3,-2,-1,0,1,2,3}
+    end
+    local test_table_native = generate_table()
+    local test_table_missing = generate_table()
+    table.remove(test_table_native, 1)
+    missing.table.remove(test_table_missing, 1)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
+end)
+
+describe("missing -table.sort-", function()
+  it("should sort a simple table", function()
+    local function generate_table()
+      return {33,3,333,87,13,252,-29}
+    end
+    local test_table_native = generate_table()
+    local test_table_missing = generate_table()
+    table.sort(test_table_native)
+    missing.table.sort(test_table_missing)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
+
+  it("should sort a simple table with a given comp function", function()
+    local function generate_table()
+      return {33,3,333,87,13,252,-29}
+    end
+    local function desc(a, b)
+      return a > b
+    end
+    local test_table_native = generate_table()
+    local test_table_missing = generate_table()
+    table.sort(test_table_native, desc)
+    missing.table.sort(test_table_missing, desc)
+    for i,v in ipairs(test_table_native) do
+      assert.are.equals(test_table_native[i], test_table_missing[i])
+    end
+  end)
 end)

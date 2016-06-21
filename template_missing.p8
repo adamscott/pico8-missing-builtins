@@ -15,6 +15,10 @@ function _init()
   test_rawget()
   test_unpack()
   test_ipairs()
+  test_table_pack()
+  test_table_insert()
+  test_table_remove()
+  test_table_sort()
   print("every test passed.")
 end
 
@@ -211,6 +215,99 @@ function test_ipairs()
   for i,v in ipairs(test_table) do
     assert(2^i == v, "fail")
   end
+  printh("----> return an iter function")
+  test_table = {2,4,8,16,32,64,128,256,512,1024}
+  iter, i, v = ipairs(test_table)
+  assert(type(iter) == "function", "fail")
+  printh("pass")
+end
+
+function test_table_pack()
+  printh("==> 'table.pack'")
+  printh("----> pack values")
+  local values = table.pack(1,2,3,4,5)
+  assert(values[1] == 1, "fail")
+  assert(values[2] == 2, "fail")
+  assert(values[3] == 3, "fail")
+  assert(values[4] == 4, "fail")
+  assert(values[5] == 5, "fail")
+  printh("pass")
+end
+
+function test_table_insert()
+  printh("==> 'table.insert'")
+  printh("----> insert value")
+  local test_table = {22,-20,67,1009,-500}
+  table.insert(test_table, 10)
+  assert(test_table[1] == 22, "fail")
+  assert(test_table[2] == -20, "fail")
+  assert(test_table[3] == 67, "fail")
+  assert(test_table[4] == 1009, "fail")
+  assert(test_table[5] == -500, "fail")
+  assert(test_table[6] == 10, "fail")
+  printh("----> insert value at specified pos")
+  test_table = {-3,-2,-1,0,2,3}
+  table.insert(test_table, 5, 1)
+  assert(test_table[1] == -3, "fail")
+  assert(test_table[2] == -2, "fail")
+  assert(test_table[3] == -1, "fail")
+  assert(test_table[4] == 0, "fail")
+  assert(test_table[5] == 1, "fail")
+  assert(test_table[6] == 2, "fail")
+  assert(test_table[7] == 3, "fail")
+  printh("pass")
+end
+
+function test_table_remove()
+  printh("==> 'table.remove'")
+  printh("----> remove value")
+  local test_table = {-3,-2,-1,0,1,2,3}
+  table.remove(test_table)
+  assert(test_table[1] == -3, "fail")
+  assert(test_table[2] == -2, "fail")
+  assert(test_table[3] == -1, "fail")
+  assert(test_table[4] == 0, "fail")
+  assert(test_table[5] == 1, "fail")
+  assert(test_table[6] == 2, "fail")
+  assert(test_table[7] == nil, "fail")
+  printh("----> remove value at specified pos")
+  test_table = {-3,-2,-1,0,1,2,3}
+  table.remove(test_table, 1)
+  assert(test_table[1] == -2, "fail")
+  assert(test_table[2] == -1, "fail")
+  assert(test_table[3] == 0, "fail")
+  assert(test_table[4] == 1, "fail")
+  assert(test_table[5] == 2, "fail")
+  assert(test_table[6] == 3, "fail")
+  assert(test_table[7] == nil, "fail")
+  printh("pass")
+end
+
+function test_table_sort()
+  printh("==> 'table.sort'")
+  printh("----> sort simple table")
+  local test_table = {33,3,333,87,13,252,-29}
+  table.sort(test_table)
+  assert(test_table[1] == -29, "fail")
+  assert(test_table[2] == 3, "fail")
+  assert(test_table[3] == 13, "fail")
+  assert(test_table[4] == 33, "fail")
+  assert(test_table[5] == 87, "fail")
+  assert(test_table[6] == 252, "fail")
+  assert(test_table[7] == 333, "fail")
+  printh("----> sort simple table with given comp function")
+  local function desc(a,b)
+    return a > b
+  end
+  test_table = {33,3,333,87,13,252,-29}
+  table.sort(test_table, desc)
+  assert(test_table[1] == 333, "fail")
+  assert(test_table[2] == 252, "fail")
+  assert(test_table[3] == 87, "fail")
+  assert(test_table[4] == 33, "fail")
+  assert(test_table[5] == 13, "fail")
+  assert(test_table[6] == 3, "fail")
+  assert(test_table[7] == -29, "fail")
   printh("pass")
 end
 
