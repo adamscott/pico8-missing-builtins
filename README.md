@@ -41,6 +41,7 @@ To Lexaloffle, which this library would not exist without pico-8.
   - `table.remove`
   - `table.sort`
 - Refactor `ipairs` to make it return an `iter` function, as the native one does.
+
 ### 0.1
 - Add
   - `getmetatable`
